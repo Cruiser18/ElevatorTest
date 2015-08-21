@@ -4,9 +4,11 @@ using System.Collections;
 public class StateOpeningDoors : ElevatorState
 {
 
-    public override void UpdateState(GameObject gameObject)
-    {
+    private Animation animation = GameObject.Find("ElevatorDoorLeft").GetComponent<Animation>();
 
+    public override void UpdateState(Elevator gameObject)
+    {
+        animation.Play("LeftElevatorDoorOpen");
     }
 
     // Check if state is done with whatever it is doing

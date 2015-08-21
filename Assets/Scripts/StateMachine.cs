@@ -6,23 +6,41 @@ public class StateMachine : ScriptableObject, Observer {
 
     private ElevatorState currentState;
     private Stack stateStack = new Stack();
-    private GameObject owner;
+    private Elevator owner;
+    public Transform[] floorCoordinates;
+    public int targetFloor;
 
-    public StateMachine(ElevatorState state, GameObject gameObject)
+    public void Init(ElevatorState state, Elevator elevator)
     {
         SetState(state);
 
-        owner = gameObject;
+        owner = elevator;
 
-
+        floorCoordinates = new Transform[] {
+            elevator.ElevatorButtons[0].transform,
+            elevator.ElevatorButtons[1].transform,
+            elevator.ElevatorButtons[2].transform,
+        };
     }
 
     public void RunState() {
 
+        currentState = GetCurrentState();
+
         if (currentState != null)
         {
             currentState.UpdateState(owner);
+
+            if(currentState.IsStateDone())
+            {
+                PopState();
+            }
         }
+    }
+
+    private ElevatorState GetCurrentState()
+    {
+        return stateStack.Count > 0 ? stateStack.Peek() as ElevatorState : null;
     }
 
     public void SetState(ElevatorState state) 
@@ -31,10 +49,10 @@ public class StateMachine : ScriptableObject, Observer {
 
         PushState(currentState);
 
-        currentState.Enter();
+        currentState.Enter(this);
     }
 
-    public void PushState(ElevatorState state)
+    private void PushState(ElevatorState state)
     {
         stateStack.Push(state);
     }
@@ -42,6 +60,10 @@ public class StateMachine : ScriptableObject, Observer {
     public void PopState()
     {
         stateStack.Pop();
+
+        Debug.Log("State was popped");
+
+
     }
 
     public void onNotify(GameObject gameObject, Event myEvent)
@@ -49,7 +71,7 @@ public class StateMachine : ScriptableObject, Observer {
         switch(myEvent.eventType)
         {
             case (int)Event.events.buttonClicked :
-                currentState.ElevatorButtonClicked(gameObject, myEvent);
+                currentState.ElevatorButtonClicked(gameObject, (ButtonClickedEvent)myEvent);
                 break;
         }
     }

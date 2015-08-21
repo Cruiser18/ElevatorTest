@@ -4,7 +4,7 @@ using System.Collections;
 public class StateEmergencyStopped : ElevatorState
 {
 
-    public override void UpdateState(GameObject gameObject)
+    public override void UpdateState(Elevator gameObject)
     {
 
     }

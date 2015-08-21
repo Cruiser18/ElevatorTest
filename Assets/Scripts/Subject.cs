@@ -1,26 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Subject {
+public class Subject : MonoBehaviour {
 
     private List<Observer> observers = new List<Observer>();
 
-    private int numObservers;
-
     public void addObserver(Observer observer)
     {
-
+        observers.Add(observer);
     }
 
     public void removeObserver(Observer observer)
     {
-
+        observers.Remove(observer);
     }
 
-    protected void notify(const GameObject gameobject, Event myEvent)
+    protected void notify(GameObject gameobject, Event myEvent)
     {
         foreach(Observer observer in observers) {
-            observer.notify(gameobject, myEvent);
+            observer.onNotify(gameobject, myEvent);
         }
     }
 }

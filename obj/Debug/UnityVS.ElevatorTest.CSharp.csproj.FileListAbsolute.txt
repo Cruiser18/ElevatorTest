@@ -9,3 +9,9 @@ C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEngi
 C:\Users\Christian\Documents\Unity\ElevatorTest\obj\Debug\UnityVS.ElevatorTest.CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Christian\Documents\Unity\ElevatorTest\obj\Debug\Assembly-CSharp.dll
 C:\Users\Christian\Documents\Unity\ElevatorTest\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEngine.Analytics.dll
+C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEngine.Analytics.xml
+C:\Users\Christian\Documents\Unity\ElevatorTest\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml

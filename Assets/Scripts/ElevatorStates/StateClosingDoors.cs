@@ -4,7 +4,7 @@ using System.Collections;
 public class StateClosingDoors : ElevatorState
 {
 
-    public override void UpdateState(GameObject gameObject)
+    public override void UpdateState(Elevator gameObject)
     {
 
     }

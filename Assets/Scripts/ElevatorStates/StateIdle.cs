@@ -3,7 +3,9 @@ using System.Collections;
 
 public class StateIdle : ElevatorState {
 
-    public override void UpdateState(GameObject gameObject)
+    public bool elevatorDoorsOpen = false;
+
+    public override void UpdateState(Elevator gameObject)
     {
         
     }
@@ -11,7 +13,7 @@ public class StateIdle : ElevatorState {
     // Check if state is done with whatever it is doing
     public override bool IsStateDone()
     {
-        return true;
+        return false;
     }
 
     // We have reached the end of the state and would like to transition to next state in line
@@ -20,9 +22,13 @@ public class StateIdle : ElevatorState {
 
     }
 
-    public override void ElevatorButtonClicked(GameObject gameObject, Event myEvent)
+    public override void ElevatorButtonClicked(GameObject gameObject, ButtonClickedEvent myEvent)
     {
-        Debug.Log("Elevator button was clicked");
+        Debug.Log("Elevator button was clicked for floor: " + myEvent.floorNumber);
+
+        stateMachine.SetState(ScriptableObject.CreateInstance("StateMoving") as StateMoving);
+
+        stateMachine.targetFloor = myEvent.floorNumber;
     }
 
 }

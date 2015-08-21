@@ -5,7 +5,6 @@ using System;
 public class Elevator : MonoBehaviour {
 
     public ElevatorButton[] ElevatorButtons;
-    private ElevatorState[] states = new ElevatorState[Enum.GetNames(typeof(Enums.ElevatorStates)).Length];
     private StateMachine stateMachine;
     public StateIdle stateIdle;
     
@@ -15,26 +14,17 @@ public class Elevator : MonoBehaviour {
 
         CreateStates();
 
-        stateMachine = new StateMachine(new StateIdle(), this.gameObject);
+        stateMachine = ScriptableObject.CreateInstance("StateMachine") as StateMachine;
+        stateMachine.Init(ScriptableObject.CreateInstance("StateIdle") as StateIdle, this);
 
         ElevatorButtons[0].addObserver(stateMachine);
         ElevatorButtons[1].addObserver(stateMachine);
-
-        // Subscribe to each elevator button
-        foreach (ElevatorButton button in ElevatorButtons)
-        {
-            button.ButtonClicked += FloorButtonClicked;
-        }
+        ElevatorButtons[2].addObserver(stateMachine);
 	}
 
     private void CreateStates()
     {
         
-    }
-
-    private void FloorButtonClicked(object sender, ButtonClickedEventArgs e)
-    {
-        Debug.Log(e.floorNumber);
     }
 	
 	// Update is called once per frame
